@@ -21,7 +21,7 @@ namespace TurkeyEarthquake.API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] EarthquakeRequest earthquakeRequest) {
             
-            var scrapper = _scrapperFactory.GetScrapper(WebSiteType.afad);
+            var scrapper = _scrapperFactory.GetScrapper(earthquakeRequest.SiteType);
 
             var result = scrapper.GetEarthquakes(earthquakeRequest.PageNumber);
 
