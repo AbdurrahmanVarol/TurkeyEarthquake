@@ -1,3 +1,5 @@
+using TurkeyEarthquake.API.Caching.Abstract;
+using TurkeyEarthquake.API.Caching.Concrate.Redis;
 using TurkeyEarthquake.API.Factories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ScrapperFactoryBase,ScrapperFactory>();
+builder.Services.AddScoped<ScrapperFactoryBase, ScrapperFactory>();
+
+builder.Services.AddScoped<ICache, RedisCache>();
 
 var app = builder.Build();
 

@@ -1,9 +1,12 @@
-﻿using TurkeyEarthquake.API.Response;
+﻿using TurkeyEarthquake.API.Caching.Abstract;
+using TurkeyEarthquake.API.Response;
 
 namespace TurkeyEarthquake.API.Scrappers.Abstract
 {
     public abstract class ScrapperBase
     {
+        protected ICache Cache;
+
         protected string BaseUrl { get; set; }
         protected string GetHtml(string url, int? pageNumbber)
         {

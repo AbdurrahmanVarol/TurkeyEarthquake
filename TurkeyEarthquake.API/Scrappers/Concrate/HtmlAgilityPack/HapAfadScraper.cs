@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using System.Runtime.CompilerServices;
+using TurkeyEarthquake.API.Caching.Abstract;
 using TurkeyEarthquake.API.Response;
 using TurkeyEarthquake.API.Scrappers.Abstract;
 
@@ -7,8 +8,9 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
 {
     public class HapAfadScraper : ScrapperBase
     {
-        public HapAfadScraper()
+        public HapAfadScraper(ICache cache)
         {
+            Cache = cache;
             BaseUrl = "https://deprem.afad.gov.tr/last-earthquakes.html";
         }
         protected override List<EarthquakeResponse> ParseHtml(string html)
@@ -32,7 +34,7 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
                     var earthquake = new EarthquakeResponse
                     {
                         Date = DateTime.Parse(row.ChildNodes[0].InnerHtml),
-                        Latitude = double.Parse(row.ChildNodes[1].InnerHtml.Replace(".",",")),
+                        Latitude = double.Parse(row.ChildNodes[1].InnerHtml.Replace(".", ",")),
                         Longitude = double.Parse(row.ChildNodes[2].InnerHtml.Replace(".", ",")),
                         Depth = double.Parse(row.ChildNodes[3].InnerHtml.Replace(".", ",")),
                         Type = row.ChildNodes[4].InnerHtml,
