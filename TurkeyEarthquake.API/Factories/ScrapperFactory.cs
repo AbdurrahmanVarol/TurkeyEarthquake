@@ -15,7 +15,7 @@ namespace TurkeyEarthquake.API.Factories
                 case WebSiteType.kandilli:
                     return new HapKandilliScrapper();
                 default:
-                    throw new ArgumentException()
+                    throw new ArgumentException();
             }
         }
     }

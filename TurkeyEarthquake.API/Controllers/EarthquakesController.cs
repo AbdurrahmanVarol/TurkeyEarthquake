@@ -19,9 +19,9 @@ namespace TurkeyEarthquake.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(EarthquakeRequest earthquakeRequest) {
+        public IActionResult Get([FromQuery] EarthquakeRequest earthquakeRequest) {
             
-            var scrapper = _scrapperFactory.GetScrapper(earthquakeRequest.SiteType);
+            var scrapper = _scrapperFactory.GetScrapper(WebSiteType.afad);
 
             var result = scrapper.GetEarthquakes(earthquakeRequest.PageNumber);
 

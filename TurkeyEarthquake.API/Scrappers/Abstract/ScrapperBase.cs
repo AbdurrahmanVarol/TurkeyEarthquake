@@ -5,7 +5,7 @@ namespace TurkeyEarthquake.API.Scrappers.Abstract
     public abstract class ScrapperBase
     {
         protected string BaseUrl { get; set; }
-        protected Task<string> GetHtml(string url, int? pageNumbber)
+        protected string GetHtml(string url, int? pageNumbber)
         {
 
             if (pageNumbber is not null)
@@ -13,15 +13,15 @@ namespace TurkeyEarthquake.API.Scrappers.Abstract
 
             var client = new HttpClient();
 
-            return client.GetStringAsync(url);
+            return client.GetStringAsync(url).GetAwaiter().GetResult();
         }
-        protected abstract Task<List<EarthquakeResponse>> ParseHtml(string html);
+        protected abstract List<EarthquakeResponse> ParseHtml(string html);
 
-        public  async Task<List<EarthquakeResponse>> GetEarthquakes(int? pageNumber)
+        public  List<EarthquakeResponse> GetEarthquakes(int? pageNumber)
         {
-            var html = await GetHtml(BaseUrl,pageNumber);
+            var html = GetHtml(BaseUrl, pageNumber);
 
-            var result = await  ParseHtml(html);
+            var result = ParseHtml(html);
 
             return result;
         }

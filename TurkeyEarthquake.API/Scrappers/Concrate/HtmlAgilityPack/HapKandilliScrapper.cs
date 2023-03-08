@@ -9,7 +9,7 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
         {
             BaseUrl = "http://www.koeri.boun.edu.tr/scripts/lst9.asp";
         }
-        protected override Task<List<EarthquakeResponse>> ParseHtml(string html)
+        protected override List<EarthquakeResponse> ParseHtml(string html)
         {
             throw new NotImplementedException();
         }
