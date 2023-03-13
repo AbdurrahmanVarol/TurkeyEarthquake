@@ -14,15 +14,12 @@ namespace TurkeyEarthquake.API.Factories
         }
         public override ScrapperBase GetScrapper(WebSiteType webSite)
         {
-            switch (webSite)
+            return webSite switch
             {
-                case WebSiteType.afad:
-                    return new HapAfadScraper(_cache);
-                case WebSiteType.kandilli:
-                    return new HapKandilliScrapper(_cache);
-                default:
-                    throw new ArgumentException();
-            }
+                WebSiteType.afad => new HapAfadScraper(_cache),
+                WebSiteType.kandilli => new HapKandilliScrapper(_cache),
+                _ => throw new ArgumentException()
+            };
         }
     }
 }

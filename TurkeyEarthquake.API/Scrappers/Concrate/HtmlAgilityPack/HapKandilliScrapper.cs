@@ -34,7 +34,7 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
                     Latitude = double.Parse(rowData[2].Replace(".", ",")),
                     Longitude = double.Parse(rowData[2].Replace(".", ",")),
                     Depth = double.Parse(rowData[4].Replace(".", ",")),
-                    Size = double.Parse(rowData[6].Replace(".", ",")),
+                    Magnitude = double.Parse(rowData[6].Replace(".", ",")),
                     Type = "ML",
                     Location = location
                 };

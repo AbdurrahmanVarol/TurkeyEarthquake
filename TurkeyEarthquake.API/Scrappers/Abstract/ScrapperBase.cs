@@ -8,21 +8,17 @@ namespace TurkeyEarthquake.API.Scrappers.Abstract
         protected ICache Cache;
 
         protected string BaseUrl { get; set; }
-        protected string GetHtml(string url, int? pageNumbber)
+        protected string GetHtml(string url)
         {
-
-            if (pageNumbber is not null)
-                url += $"{url}?page={pageNumbber}";
-
             var client = new HttpClient();
 
             return client.GetStringAsync(url).GetAwaiter().GetResult();
         }
         protected abstract List<EarthquakeResponse> ParseHtml(string html);
 
-        public  List<EarthquakeResponse> GetEarthquakes(int? pageNumber)
+        public  List<EarthquakeResponse> GetEarthquakes()
         {
-            var html = GetHtml(BaseUrl, pageNumber);
+            var html = GetHtml(BaseUrl);
 
             var result = ParseHtml(html);
 

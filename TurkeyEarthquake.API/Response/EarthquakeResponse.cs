@@ -9,7 +9,7 @@ namespace TurkeyEarthquake.API.Response
         public double Longitude { get; set; }
         public double Depth { get; set; }
         public string Type { get; set; }
-        public double Size { get; set; }
+        public double Magnitude { get; set; }
         public string Location { get; set; }
     }
 }

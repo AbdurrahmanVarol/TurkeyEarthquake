@@ -4,6 +4,7 @@ using TurkeyEarthquake.API.Enums;
 using TurkeyEarthquake.API.Factories;
 using TurkeyEarthquake.API.Requests;
 using TurkeyEarthquake.API.Scrappers.Abstract;
+using TurkeyEarthquake.API.Services.Abstract;
 
 namespace TurkeyEarthquake.API.Controllers
 {
@@ -11,23 +12,25 @@ namespace TurkeyEarthquake.API.Controllers
     [ApiController]
     public class EarthquakesController : ControllerBase
     {
-        private readonly ScrapperFactoryBase _scrapperFactory;
+        private readonly IEarthquakeService _earthquakeService;
 
-        public EarthquakesController(ScrapperFactoryBase scrapperFactory)
+        public EarthquakesController(IEarthquakeService earthquakeService)
         {
-            _scrapperFactory = scrapperFactory;
+            _earthquakeService = earthquakeService;
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] EarthquakeRequest earthquakeRequest) {
-            
-            var scrapper = _scrapperFactory.GetScrapper(earthquakeRequest.SiteType);
-
-            var result = scrapper.GetEarthquakes(earthquakeRequest.PageNumber);
-
-            return Ok(result);        
-        
+        public IActionResult Get([FromQuery] EarthquakeRequest earthquakeRequest)
+        {
+            var result = _earthquakeService.GetEarthquakes(earthquakeRequest);
+            return Ok(result);
         }
-        
+        [HttpGet("paginated")]
+        public IActionResult GetEarthquakesWithPaginated([FromQuery] EarthquakeRequest earthquakeRequest)
+        {
+            var result = _earthquakeService.GetEarthquakesWithPaginated(earthquakeRequest);
+            return Ok(result);
+        }
+
     }
 }

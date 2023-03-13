@@ -1,6 +1,8 @@
 using TurkeyEarthquake.API.Caching.Abstract;
 using TurkeyEarthquake.API.Caching.Concrate.Redis;
 using TurkeyEarthquake.API.Factories;
+using TurkeyEarthquake.API.Services.Abstract;
+using TurkeyEarthquake.API.Services.Concrate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IEarthquakeService,EarthquakeService>();
 builder.Services.AddScoped<ScrapperFactoryBase, ScrapperFactory>();
-
+                                                                   
 builder.Services.AddScoped<ICache, RedisCache>();
 
 var app = builder.Build();
@@ -29,5 +32,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(p=>p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.Run();

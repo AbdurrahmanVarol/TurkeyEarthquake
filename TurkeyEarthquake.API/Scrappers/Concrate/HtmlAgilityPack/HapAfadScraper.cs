@@ -38,7 +38,7 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
                         Longitude = double.Parse(row.ChildNodes[2].InnerHtml.Replace(".", ",")),
                         Depth = double.Parse(row.ChildNodes[3].InnerHtml.Replace(".", ",")),
                         Type = row.ChildNodes[4].InnerHtml,
-                        Size = double.Parse(row.ChildNodes[5].InnerHtml.Replace(".", ",")),
+                        Magnitude = double.Parse(row.ChildNodes[5].InnerHtml.Replace(".", ",")),
                         Location = row.ChildNodes[6].InnerHtml
                     };
 
