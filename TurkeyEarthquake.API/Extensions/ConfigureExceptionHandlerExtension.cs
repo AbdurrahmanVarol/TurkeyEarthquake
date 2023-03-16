@@ -18,7 +18,7 @@ namespace TurkeyEarthquake.API.Extensions
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
 
                     if(contextFeature != null)
-                    {
+                    {                       
                         //TODO:Loglama eklenebilir
                         await context.Response.WriteAsJsonAsync(new
                         {

@@ -1,4 +1,6 @@
+using System.Reflection;
 using TurkeyEarthquake.API.Caching.Abstract;
+using TurkeyEarthquake.API.Caching.Concrate.InMemory;
 using TurkeyEarthquake.API.Caching.Concrate.Redis;
 using TurkeyEarthquake.API.Extensions;
 using TurkeyEarthquake.API.Factories;
@@ -14,10 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddMemoryCache();
+
 builder.Services.AddScoped<IEarthquakeService,EarthquakeService>();
 builder.Services.AddScoped<ScrapperFactoryBase, ScrapperFactory>();
                                                                    
-builder.Services.AddScoped<ICache, RedisCache>();
+builder.Services.AddSingleton<ICache, InMemoryCache>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

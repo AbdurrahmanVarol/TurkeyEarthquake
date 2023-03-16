@@ -12,18 +12,17 @@ namespace TurkeyEarthquake.API.Caching.Concrate.Redis
         {
             var connectionString = configuration.GetSection("RedisConfiguration:ConnectionString")?.Value;
 
-            //ConfigurationOptions options = new ConfigurationOptions
-            //{
-            //    EndPoints =
-            //    {
-            //        connectionString
-            //    },
-            //    AbortOnConnectFail = false,
-            //    AsyncTimeout = 10000,
-            //    ConnectTimeout = 10000
-            //};
-
-            //_client = ConnectionMultiplexer.Connect(options);
+            var options = new ConfigurationOptions
+            {
+                EndPoints =
+                {
+                    connectionString
+                },
+                AbortOnConnectFail = false,
+                AsyncTimeout = 10000,
+                ConnectTimeout = 10000
+            };
+            _client = ConnectionMultiplexer.Connect(options);
         }
 
         public void Set(string key, string value)
