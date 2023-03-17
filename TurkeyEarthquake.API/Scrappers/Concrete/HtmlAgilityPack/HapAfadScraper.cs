@@ -1,11 +1,8 @@
 ﻿using HtmlAgilityPack;
-using System.Runtime.CompilerServices;
-using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Entities;
 using TurkeyEarthquake.API.Response;
 using TurkeyEarthquake.API.Scrappers.Abstract;
 
-namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
+namespace TurkeyEarthquake.API.Scrappers.Concrete.HtmlAgilityPack
 {
     public class HapAfadScraper : ScrapperBase
     {

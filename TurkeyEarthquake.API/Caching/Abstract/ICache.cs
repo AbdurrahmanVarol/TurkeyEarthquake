@@ -1,6 +1,4 @@
-﻿using TurkeyEarthquake.API.Caching.Concrate.Extensions;
-
-namespace TurkeyEarthquake.API.Caching.Abstract
+﻿namespace TurkeyEarthquake.API.Caching.Abstract
 {
     public interface ICache
     {

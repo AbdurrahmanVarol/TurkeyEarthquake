@@ -6,7 +6,7 @@ namespace TurkeyEarthquake.API.Extensions
 {
     public static class ConfigureExceptionHandlerExtension
     {
-        public static void ConfigureExceptionHandler (this WebApplication application)
+        public static void ConfigureExceptionHandler(this WebApplication application)
         {
             application.UseExceptionHandler(builder =>
             {
@@ -17,8 +17,8 @@ namespace TurkeyEarthquake.API.Extensions
 
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
 
-                    if(contextFeature != null)
-                    {                       
+                    if (contextFeature != null)
+                    {
                         //TODO:Loglama eklenebilir
                         await context.Response.WriteAsJsonAsync(new
                         {

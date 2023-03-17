@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using System.Linq;
 using TurkeyEarthquake.API.Caching.Abstract;
 using TurkeyEarthquake.API.Entities;
 using TurkeyEarthquake.API.Factories;
 using TurkeyEarthquake.API.Requests;
 using TurkeyEarthquake.API.Response;
-using TurkeyEarthquake.API.Scrappers.Abstract;
 using TurkeyEarthquake.API.Services.Abstract;
 
-namespace TurkeyEarthquake.API.Services.Concrate
+namespace TurkeyEarthquake.API.Services.Concrete
 {
     public class EarthquakeService : IEarthquakeService
     {
@@ -27,26 +25,20 @@ namespace TurkeyEarthquake.API.Services.Concrate
 
         public List<EarthquakeResponse> GetEarthquakes(EarthquakeRequest request)
         {
-           // var a = $"earthquakes{request.SiteType}";
+            // var a = $"earthquakes{request.SiteType}";
             var cachedEarthquakes = _cache.Get<List<Earthquake>>($"earthquakes{request.SiteType}") ?? new List<Earthquake>();
-            if(cachedEarthquakes != null && cachedEarthquakes.Any())
-            {
+            if (cachedEarthquakes.Any())
                 return _mapper.Map<List<EarthquakeResponse>>(cachedEarthquakes);
-            }
+
             var scraper = _scrapperFactory.GetScrapper(request.SiteType);
             var earthquakes = scraper.GetEarthquakes();
             if (earthquakes.Any())
             {
                 cachedEarthquakes.AddRange(_mapper.Map<List<Earthquake>>(earthquakes));
-
                 cachedEarthquakes = cachedEarthquakes.OrderByDescending(p => p.Date).ToList();
-                Console.WriteLine("---------------" + cachedEarthquakes.Count);
                 _cache.Set($"earthquakes{request.SiteType}", cachedEarthquakes);
-                _cache.Set($"latest{request.SiteType}", cachedEarthquakes.FirstOrDefault(),TimeSpan.FromMinutes(5));
+                _cache.Set($"latest{request.SiteType}", cachedEarthquakes.FirstOrDefault(), TimeSpan.FromMinutes(5));
             }
-
-
-
             return _mapper.Map<List<EarthquakeResponse>>(cachedEarthquakes);
         }
 

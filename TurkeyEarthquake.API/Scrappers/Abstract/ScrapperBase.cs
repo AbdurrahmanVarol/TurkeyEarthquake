@@ -1,6 +1,4 @@
-﻿using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Entities;
-using TurkeyEarthquake.API.Response;
+﻿using TurkeyEarthquake.API.Response;
 
 namespace TurkeyEarthquake.API.Scrappers.Abstract
 {
@@ -15,7 +13,7 @@ namespace TurkeyEarthquake.API.Scrappers.Abstract
         }
         protected abstract List<EarthquakeResponse> ParseHtml(string html);
 
-        public  List<EarthquakeResponse> GetEarthquakes()
+        public List<EarthquakeResponse> GetEarthquakes()
         {
             var html = GetHtml(BaseUrl);
 

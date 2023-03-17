@@ -1,7 +1,6 @@
-﻿using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Enums;
+﻿using TurkeyEarthquake.API.Enums;
 using TurkeyEarthquake.API.Scrappers.Abstract;
-using TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack;
+using TurkeyEarthquake.API.Scrappers.Concrete.HtmlAgilityPack;
 
 namespace TurkeyEarthquake.API.Factories
 {

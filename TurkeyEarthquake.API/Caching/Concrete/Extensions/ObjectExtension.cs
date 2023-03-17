@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TurkeyEarthquake.API.Caching.Concrate.Extensions
+namespace TurkeyEarthquake.API.Caching.Concrete.Extensions
 {
     public static class ObjectExtension
     {

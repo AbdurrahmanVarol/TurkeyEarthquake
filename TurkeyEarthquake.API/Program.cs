@@ -1,11 +1,10 @@
 using System.Reflection;
 using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Caching.Concrate.InMemory;
-using TurkeyEarthquake.API.Caching.Concrate.Redis;
+using TurkeyEarthquake.API.Caching.Concrete.InMemory;
 using TurkeyEarthquake.API.Extensions;
 using TurkeyEarthquake.API.Factories;
 using TurkeyEarthquake.API.Services.Abstract;
-using TurkeyEarthquake.API.Services.Concrate;
+using TurkeyEarthquake.API.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +17,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMemoryCache();
 
-builder.Services.AddScoped<IEarthquakeService,EarthquakeService>();
+builder.Services.AddScoped<IEarthquakeService, EarthquakeService>();
 builder.Services.AddScoped<ScrapperFactoryBase, ScrapperFactory>();
-                                                                   
+
 builder.Services.AddSingleton<ICache, InMemoryCache>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -41,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors(p=>p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.Run();

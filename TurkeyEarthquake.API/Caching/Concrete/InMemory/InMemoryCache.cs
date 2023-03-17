@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Caching.Concrate.Extensions;
+using TurkeyEarthquake.API.Caching.Concrete.Extensions;
 
-namespace TurkeyEarthquake.API.Caching.Concrate.InMemory
+namespace TurkeyEarthquake.API.Caching.Concrete.InMemory
 {
     public class InMemoryCache : ICache
     {
@@ -37,8 +37,10 @@ namespace TurkeyEarthquake.API.Caching.Concrate.InMemory
 
         public async Task<T> GetAsync<T>(string key) where T : class
         {
-            var value = _cache.Get(key).ToString();
-            return value.ToObject<T>();
+            return _cache.GetOrCreateAsync(key, async factory =>
+            {
+                return factory.Value;
+            }).ToString().ToObject<T>();
         }
 
         public void Remove(string key)
@@ -77,7 +79,7 @@ namespace TurkeyEarthquake.API.Caching.Concrate.InMemory
         {
             return _cache.GetOrCreateAsync(key, async factory =>
             {
-                factory.SetValue(value.ToJson);
+                factory.SetValue(value.ToJson());
                 factory.AbsoluteExpiration = DateTimeOffset.Now.Add(expiration);
                 return new
                 {

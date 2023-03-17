@@ -1,8 +1,8 @@
 ﻿using StackExchange.Redis;
 using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Caching.Concrate.Extensions;
+using TurkeyEarthquake.API.Caching.Concrete.Extensions;
 
-namespace TurkeyEarthquake.API.Caching.Concrate.Redis
+namespace TurkeyEarthquake.API.Caching.Concrete.Redis
 {
     public class RedisCache : ICache
     {

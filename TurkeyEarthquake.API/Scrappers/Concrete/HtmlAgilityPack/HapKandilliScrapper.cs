@@ -1,10 +1,8 @@
 ﻿using HtmlAgilityPack;
-using TurkeyEarthquake.API.Caching.Abstract;
-using TurkeyEarthquake.API.Entities;
 using TurkeyEarthquake.API.Response;
 using TurkeyEarthquake.API.Scrappers.Abstract;
 
-namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
+namespace TurkeyEarthquake.API.Scrappers.Concrete.HtmlAgilityPack
 {
     public class HapKandilliScrapper : ScrapperBase
     {
@@ -31,7 +29,7 @@ namespace TurkeyEarthquake.API.Scrappers.Concrate.HtmlAgilityPack
                 var earthquake = new EarthquakeResponse
                 {
                     Date = DateTime.Parse(rowData[0]).Add(TimeSpan.Parse(rowData[1])),
-                    Latitude = Math.Round(double.Parse(rowData[2].Replace(".", ",")),3),
+                    Latitude = Math.Round(double.Parse(rowData[2].Replace(".", ",")), 3),
                     Longitude = Math.Round(double.Parse(rowData[3].Replace(".", ",")), 3),
                     Depth = double.Parse(rowData[4].Replace(".", ",")),
                     Magnitude = double.Parse(rowData[6].Replace(".", ",")),
