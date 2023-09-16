@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using TurkeyEarthquake.API.Dtos.Response;
 using TurkeyEarthquake.API.Entities;
-using TurkeyEarthquake.API.Response;
 
 namespace TurkeyEarthquake.API.Mapping.AutoMapper
 {

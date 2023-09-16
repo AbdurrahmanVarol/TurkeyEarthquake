@@ -1,4 +1,4 @@
-﻿using TurkeyEarthquake.API.Response;
+﻿using TurkeyEarthquake.API.Dtos.Response;
 
 namespace TurkeyEarthquake.API.Scrappers.Abstract
 {

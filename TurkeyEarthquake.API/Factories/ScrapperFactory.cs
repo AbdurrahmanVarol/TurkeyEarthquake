@@ -6,14 +6,11 @@ namespace TurkeyEarthquake.API.Factories
 {
     public class ScrapperFactory : ScrapperFactoryBase
     {
-        public override ScrapperBase GetScrapper(WebSiteType webSite)
+        public override ScrapperBase GetScrapper(WebSiteType webSite) => webSite switch
         {
-            return webSite switch
-            {
-                WebSiteType.afad => new HapAfadScraper(),
-                WebSiteType.kandilli => new HapKandilliScrapper(),
-                _ => throw new ArgumentException()
-            };
-        }
+            WebSiteType.afad => new HapAfadScraper(),
+            WebSiteType.kandilli => new HapKandilliScrapper(),
+            _ => throw new ArgumentException("wrong website type!!!")
+        };
     }
 }

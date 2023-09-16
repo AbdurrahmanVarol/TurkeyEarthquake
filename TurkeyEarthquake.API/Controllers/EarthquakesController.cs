@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TurkeyEarthquake.API.Dtos.Requests;
 using TurkeyEarthquake.API.Enums;
-using TurkeyEarthquake.API.Factories;
-using TurkeyEarthquake.API.Requests;
-using TurkeyEarthquake.API.Scrappers.Abstract;
 using TurkeyEarthquake.API.Services.Abstract;
 
 namespace TurkeyEarthquake.API.Controllers
@@ -20,9 +17,9 @@ namespace TurkeyEarthquake.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] EarthquakeRequest earthquakeRequest)
+        public IActionResult Get([FromQuery] WebSiteType webSiteType)
         {
-            var result = _earthquakeService.GetEarthquakes(earthquakeRequest);
+            var result = _earthquakeService.GetEarthquakes(webSiteType);
             return Ok(result);
         }
         [HttpGet("paginated")]

@@ -3,6 +3,7 @@ using TurkeyEarthquake.API.Caching.Abstract;
 using TurkeyEarthquake.API.Caching.Concrete.InMemory;
 using TurkeyEarthquake.API.Extensions;
 using TurkeyEarthquake.API.Factories;
+using TurkeyEarthquake.API.Middlewares;
 using TurkeyEarthquake.API.Services.Abstract;
 using TurkeyEarthquake.API.Services.Concrete;
 
@@ -39,6 +40,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandleMiddleware>();
 
 app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TurkeyEarthquake.API.Response
+namespace TurkeyEarthquake.API.Dtos.Response
 {
     public class EarthquakeResponse
     {

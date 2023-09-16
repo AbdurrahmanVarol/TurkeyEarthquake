@@ -1,5 +1,5 @@
 ﻿using HtmlAgilityPack;
-using TurkeyEarthquake.API.Response;
+using TurkeyEarthquake.API.Dtos.Response;
 using TurkeyEarthquake.API.Scrappers.Abstract;
 
 namespace TurkeyEarthquake.API.Scrappers.Concrete.HtmlAgilityPack
