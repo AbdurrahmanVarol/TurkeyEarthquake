@@ -1,7 +1,6 @@
 using System.Reflection;
 using TurkeyEarthquake.API.Caching.Abstract;
 using TurkeyEarthquake.API.Caching.Concrete.InMemory;
-using TurkeyEarthquake.API.Extensions;
 using TurkeyEarthquake.API.Factories;
 using TurkeyEarthquake.API.Middlewares;
 using TurkeyEarthquake.API.Services.Abstract;
@@ -34,7 +33,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

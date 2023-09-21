@@ -8,5 +8,5 @@ public class PaginatedResponse
     public IList<EarthquakeResponse> Items { get; set; } = new List<EarthquakeResponse>();
     public int Pages => (int)Math.Ceiling(Count / (double)Size);
     public bool HasPrevious => Index > 0;
-    public bool HasNext => Index + 1 < Count;
+    public bool HasNext => Index + 1 < Pages;
 }
